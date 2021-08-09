@@ -1,0 +1,60 @@
+<a>{{ lst[2] }}</a>		<!--jinja can accept any complex variable-->
+<a>{{ dict['what'] }}</a>
+
+<!--filter, for variable only-->
+<a>{{ name|filter_name }}</a>
+
+filter_name can be:
+safe: 渲染时不转义(有风险，若值为"<a>"则仍未此。默认转为"&lt;a&gt;")
+capitalize
+lower
+upper
+title
+trim: 去掉值尾部的空格
+striptags: 渲染前把值中所有html标签都删去
+
+控制结构
+{% if user %}
+	<a>{{ user }}</a>
+{% else %}
+	<a>no name</a>
+{% endif %}
+
+<ul>
+	{% for comment in comments %}
+		<li>{{ comment }}</li>
+	{% endfor %}
+</ul>
+
+
+宏
+{% macro li_comment(comment) %}
+	<li>{{ comment }}</li>
+{% endmacro %}
+<ul>
+	{% for comment in comments %}
+		{{ li_comment(comment) }}
+	{% endfor %}
+</ul>
+
+导入宏(不导入内容)
+{% import 'macro.html' as macros %}
+使用
+<ul>
+	{% for comment in comments %}
+		{{ macros.li_comment(comment) }}
+	{% endfor %}
+</ul>
+
+导入所有内容
+{% include 'somefile.html' %}
+
+
+模板继承
+基本概念是写一个基模板(base.html)，其中包含一些block, block定义如下:
+(注：块名必须是合法python标识符)
+{% block hello %}some content here{% endblock %}
+然后写子模板(child.html)，子模板前面要加上{% extends "base.html" %},
+子模板可以重写基模板中的block(继承),可以使用{{ super() }}引用父块,
+如果没重写就仍用父模板中的块。最后，根据这些块内容，更新父模板(base.html)
+中的内容。

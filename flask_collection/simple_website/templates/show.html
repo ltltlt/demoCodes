@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block someblock %}
+<div class=add_title_form>
+<form action="{{ url_for('add_entry_f') }}" method="POST">
+	<div class=add_article_title>
+		<h2>
+			<em>Create new Article!</em>
+		</h2>
+	</div>
+	<h3>
+		Title:
+	</h3>
+	{{ ltyform1.title(size=40) }}
+	<h3>
+		Contents:
+	</h3>
+	{{ ltyform1.content(rows=20, cols=80) }}
+
+	<br/>
+	<input type="submit" value="add this article" class=submit_button>
+</form>
+</div>
+
+<div class=show_articles>
+	<h2>
+		article list
+	</h2>
+{% for article in cursor %}
+	<form>
+		<em>
+			({{ article.iid }}){{ article.title }}
+		</em>
+		<p>
+			{{ article.content }}
+		</p>
+	</form>
+{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+body	{ background: white }
+p		{ color: #33BA8 }
+ul		{ color:purple }
+.welcome_message	{ text-align: right }
+.hint_message		{ text-align: center; color: blue; }
+.logout_message		{ text-align: center; color: black }
+.error_message		{ text-align: center; color: red }
+
+.login_form			{ text-align: center; color: black }
+.add_title_form		{ text-align: center; color: black }
+
+.add_article_title	{ text-align: center; color: black }
+
+.submit_button		{ height: 40px; width: 150px; display: inline-block; cursor: pointer }
+
+.show_articles		{ text-align: center; background: white; color: black }

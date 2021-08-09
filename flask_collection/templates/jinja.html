@@ -1,0 +1,11 @@
+.html, .htm, .xml, .xhtml 文件默认开启自动转义
+模版文件可以通过 {% autoescaping %} 标签来选择是否开启自动转义
+Flask在Jinja2的模版中增加了一些全局变量和辅助方法，它们的值是默认的。
+
+Jinja2的模版默认存在以下全局变量：
+	config(就是flask.config但是能全局访问)
+	request(当前request对象,flask.request)
+	session(当前session对象，flask.session)
+	g(flask.g。不同的请求有不同的全局变量，g保存的是当前请求的全局变量）)
+	url_for()	(flask.url_for函数，但是能全局访问)
+	get_flashed_messages()	(flask.get_flashed_messages函数，但是能全局访问)

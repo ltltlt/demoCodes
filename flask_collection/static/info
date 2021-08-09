@@ -1,0 +1,1 @@
+static 目录可以被网络上的用户通过 HTTP 访问。css和javascript文件就存放在这个目录下

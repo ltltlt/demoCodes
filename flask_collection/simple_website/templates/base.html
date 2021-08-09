@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+	<title>
+		lty's home page
+	</title>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='first.css') }}" />
+	<body>
+		<div class=welcome_message>
+			{% if session.name %}
+			<p>
+				Welcome, {{ session.name }}. 
+				<a href="{{ url_for('logout_f') }}">logout</a>
+			</p>
+			{% else %}
+			<p>Please <a href="{{ url_for('login_f') }}">login</a> first!</p>
+			{% endif %}
+			<hr/>
+		</div>
+		{% block someblock %}{% endblock %}
+		<ul class=hint_message>
+			{% for message in get_flashed_messages() %}
+			<li>{{ message }}</li>
+			{% endfor %}
+		</ul>
+	</body>
+</html>

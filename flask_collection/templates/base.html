@@ -1,0 +1,14 @@
+<html>
+	<body>
+		<h1 style="text-align:center;color=blue">my home page</h1>
+		<div><a href="/index">home</a></div>
+		{% with message=get_flashed_messages() %}
+		{% if messages %}
+		{% for message in messages%}
+		<p>{{message}}</p>
+		{% endfor %}
+		{% endif %}
+		{% endwith %}
+		{% block somename %}{% endblock %}
+	</body>
+</html>

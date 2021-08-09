@@ -1,0 +1,9 @@
+[submodule "blog/flasky"]
+	path = blog/flasky
+	url = https://github.com/miguelgrinberg/flasky
+[submodule "blog/betterflask"]
+	path = blog/betterflask
+	url = git@github.com:ltltlt/better_flask
+[submodule "blog/myflask"]
+	path = blog/myflask
+	url = git@github.com:ltltlt/simple_flask

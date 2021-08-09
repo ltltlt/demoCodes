@@ -1,0 +1,30 @@
+<!--模板期望一个实例化自我们刚才创建地表单类的表单对象储存成一个模板参数，称为 form。-->
+<!--当我们编写渲染这个模板的视图函数的时候，我们将会特别注意传送这个模板参数到模板中。-->
+<!--注意在Jinja中，你可以访问对象或字典的未使用过的属性和成员，而不会出错. 也可访问不存在的变量，不会出错-->
+{% extends "base.html" %}
+{% block somename %}
+<form action="" method="POST" name="login">
+<!--form.hidden_tag() 模板参数将被替换为一个隐藏字段，用来是实现在配置中激活的 CSRF 保护。如果你已经激活了 CSRF，这个字段需要出现在你所有的表单中。-->
+	{{ form.hidden_tag() }}
+	<fieldset>
+		<!--通常情况下，任何需要验证的字段都会把错误信息放入 form.field_name.errors 下-->
+		<legend>
+			sign in
+		</legend>
+		Your id: {{form.theid(size=40)}}		<!--这些方法都会产生字符串，以在此填上适当的内容-->
+		{% for error in form.theid.errors %}
+		<span style="color:red">{{ error }}</span>
+		{% endfor %}
+		<br/>
+		Your password: {{form.password(size=40)}}
+		{% for error in form.password.errors %}
+		<span style="color:red">{{ error }}</span>
+		{% endfor %}
+		<br/>
+		remember me {{form.remember_me()}}
+
+		<!--提交字段实际并不携带数据因此没有必要在表单类中定义。-->
+		<input type="submit" value="sign in"/>
+	</fieldset>
+</form>
+{% endblock %}

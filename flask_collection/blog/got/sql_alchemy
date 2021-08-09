@@ -1,0 +1,35 @@
+connect:
+	mysql: mysql://username:password@hostname/database
+	postgre: postgresql://username:password@hostname/database
+	sqlite: sqlite:////absolute/path/to/databas
+保存其中一个url到app.config['SQLALCHEMY_DATABASE_URI']
+
+app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN']若为真则在关闭连接前自动commit
+
+Column方法的关键字参数：
+primary_key
+unique
+index	# 设置索引，加快查询速度
+nullable	# 是否可为空
+default		# 设置默认值
+
+
+db.relationship(table_or_tablename, backref=None, 
+		primaryjoin, lazy, uselist, order_by, secondary, secondaryjoin)
+# 创建关系，经常用在一的一方，通过返回的属性可以获取多了多的一方的行
+# backref用来在多的一方添加方向引用
+# 此属性返回值是一个属性，当使用此属性时，返回一个子查询（设置lazy可以选择
+	子查询的结果，默认是返回调用子查询的all方法，设置lazy为'dynamic'禁用此
+	结果，而是直接返回query对象，可以对此对象进一步过滤）
+
+
+db.create_all()		# 根据模型，创建所有数据库
+db.drop_all()	# 删除所有数据库
+
+查询
+model.query		# 返回BasicQuery对象，调用此对象的all方法可以查看所有行
+str(model.query)		# 查看query对应的查询语句
+model.query.filter_by(**kargs)	# 返回BasicQuery对象
+
+
+db.session.add(obj)		# insert row(can use to update also)

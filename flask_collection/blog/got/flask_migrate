@@ -1,0 +1,18 @@
+add two statement in code:
+	import flask_migrate
+	...
+	migrate = flask_migrate.Migrate(app, db)
+	manager.add_command('db', flask_migrate.MigrateCommand)
+
+then use 'python this.py db init' to init warehouse
+
+when modify model, you can use 'python this.py db migrate -m "some comment"' to create migrate script in migrations/versions/
+
+then use 'python this.py db upgrade' to upgrade the database(the row will still here)
+you can also use 'python this.py db downgrade' to cut off the upgrade
+
+note that sqlite doesn't support dropping or altering columns
+but you can add:
+with op.batch_alter_table('tablename') as batch_op:
+    batch_op.drop_column('column')
+in upgrade function, it may work(and it did work)
